@@ -1,8 +1,7 @@
-package com.haomostudio.${pageName}.service;
+package com.sidianzhong.sdz.service;
 
-import com.haomostudio.${pageName}.po.${model};
-
-import java.util.List;
+import com.sidianzhong.sdz.model.*;
+import com.sidianzhong.sdz.utils.PageInfo;
 
 /**
 * Created by hxgqh on 2016/1/7.

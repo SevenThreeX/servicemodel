@@ -30,12 +30,20 @@ class Model2SpringMVCConverter {
             return 'Long'
         }else if (pdmType.contains('date') || pdmType.contains('timestamp')){
             return 'String'
-        }else if (pdmType.contains('decimal') || pdmType.contains('timestamp')) {
-            return 'Long'
-        }else if (pdmType.contains('longtext') || pdmType.contains('timestamp')) {
+        }else if (pdmType.contains('decimal')) {
+            return 'BigDecimal'
+        }else if (pdmType.contains('longtext')) {
             return 'String'
         }else if(pdmType.contains('double')){
             return 'Double'
+        }else if(pdmType.contains('text')){
+            return 'String'
+        }else if(pdmType.contains('float')){
+            return 'float'
+        }else if(pdmType.contains('char')){
+            return 'String'
+        }else if(pdmType.contains('longtext')){
+            return 'String'
         }
 
 
@@ -269,7 +277,7 @@ class Model2SpringMVCConverter {
 
             if (column['name']=="lastUpdateTime") {
                 if (column['type'] == 'datetime') {
-                    params.add('    criteria.set' + new Utils().underscore2UpperCamelCase(column['name'])
+                    params.add('    criteria.and' + new Utils().underscore2UpperCamelCase(column['name'])
                             + 'EqualTo(new Date());')
                 } else if (column['type'] == 'date') {
                     params.add('    criteria.and' + new Utils().underscore2UpperCamelCase(column['name'])

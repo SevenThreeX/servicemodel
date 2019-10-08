@@ -1,20 +1,19 @@
-package com.haomostudio.${pageName}.controller;
+package com.sidianzhong.sdz.controller;
 
-import com.haomostudio.${pageName}.common.Resp;
-import com.haomostudio.${pageName}.po.${model};
-import com.haomostudio.${pageName}.service.${model}Service;
-import com.haomostudio.${pageName}.service.HmUtils.Tools;
-import com.alibaba.fastjson.*;
+import com.sidianzhong.sdz.model.*;
+import com.sidianzhong.sdz.service.*;
+import com.sidianzhong.sdz.utils.PageInfo;
+import com.sidianzhong.sdz.utils.ResultModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.InvocationTargetException;
-import java.text.SimpleDateFormat;
+
 import java.util.*;
 
 /**
@@ -73,7 +72,7 @@ public class ${model}Controller {
     public Object edit${model}(
             HttpServletRequest request,
             @RequestHeader(value = "X-Auth-Token") String token,
-            @RequestParam(value = "${model_underscore}_id") Integer id,
+            @RequestParam(value = "id") Integer id,
             ${edit_request_params}
     ) {
         ${model} item = ${modelService}.get(id);
@@ -95,7 +94,7 @@ public class ${model}Controller {
     public Object get${model}ById(
             HttpServletRequest request,
             @RequestHeader(value = "X-Auth-Token") String token,
-            @RequestParam(value = "${model_underscore}_id") Integer id,
+            @RequestParam(value = "id") Integer id
     ) {
 
             ${model} item = ${modelService}.get(id);
@@ -118,12 +117,12 @@ public class ${model}Controller {
             @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
             @RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize,
             @RequestParam(value = "sortItem", required = false, defaultValue = "id") String sortItem,
-            @RequestParam(value = "sortOrder", required = false, defaultValue = "desc") String sortOrder
+            @RequestParam(value = "sortOrder", required = false, defaultValue = "desc") String sortOrder,
             ${edit_request_params}
     ) {
         ${model} item = new ${model}();
         ${edit_setattr_code}
-       PageInfo<${model}> list =  ${modelService}.getListWithPaging(pageNo, pageSize, sortItem, sortOrder,item);
+       PageInfo<${model}> list =  ${modelService}.getListWithPaging(pageNum, pageSize, sortItem, sortOrder,item);
        return new ResponseEntity<>(ResultModel.ok(list), HttpStatus.OK);
 
     }

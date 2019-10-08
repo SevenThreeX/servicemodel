@@ -1,33 +1,23 @@
-package com.haomostudio.${pageName}.service.impl;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.google.common.base.CaseFormat;
-import com.haomostudio.${pageName}.dao.*;
-import com.haomostudio.${pageName}.po.*;
-import com.haomostudio.${pageName}.vo.*;
-import com.haomostudio.${pageName}.service.*;
-import com.haomostudio.${pageName}.service.HmUtils.MybatisExampleHelper;
-import org.apache.ibatis.binding.MapperProxy;
-import org.apache.ibatis.session.RowBounds;
+package com.sidianzhong.sdz.service.impl;
+import com.github.pagehelper.PageHelper;
+import com.sidianzhong.sdz.mapper.*;
+import com.sidianzhong.sdz.model.*;
+import com.sidianzhong.sdz.service.*;
+import com.sidianzhong.sdz.utils.PageInfo;
+import com.sidianzhong.sdz.utils.Tools;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.haomo.plugin.Page;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Proxy;
-import java.util.*;
-import java.util.stream.Collectors;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.Date;
+import java.util.List;
 
 /**
 * Created by hxgqh on 2016/1/7.
 */
-@Service("${modelService}")
+@Service
+@Transactional
 public class ${model}ServiceImpl implements ${model}Service{
     protected static final Logger LOG = LoggerFactory.getLogger(${model}ServiceImpl.class);
 
