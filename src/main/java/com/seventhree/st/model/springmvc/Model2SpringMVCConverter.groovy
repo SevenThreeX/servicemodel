@@ -287,9 +287,9 @@ class Model2SpringMVCConverter {
         def params = []
 
         columns.each { name, column ->
-            if (column['name'] == 'id') {
-                return
-            }
+//            if (column['name'] == 'id') {
+//                return
+//            }
 //            if(column['name']=='createTime'){return }
 
 
