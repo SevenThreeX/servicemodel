@@ -57,6 +57,18 @@ public class ${model}ServiceImpl implements ${model}Service{
        return result;
     }
 
+    @Override
+    public List<${model}> getList(Integer pageNum, Integer pageSize,
+                                                      String sortItem, String sortOrder,${model} item){
+       ${model}Example  example = new ${model}Example();
+       ${model}Example.Criteria criteria = example.createCriteria();
+       ${edit_setattr_codeimpl}
+       example.setOrderByClause(Tools.humpToLine(sortItem)+" "+sortOrder);
+       PageHelper.startPage(pageNum, pageSize);
+       List<${model}> list = this.${model_lower_camel}Mapper.selectByExample(example);
+       return list;
+    }
+
      @Override
      public PageInfo<JSONObject> getListWithObject(Integer pageNum, Integer pageSize,
                                                       String sortItem, String sortOrder,${model} item){
@@ -66,8 +78,10 @@ public class ${model}ServiceImpl implements ${model}Service{
         example.setOrderByClause(Tools.humpToLine(sortItem)+" "+sortOrder);
         PageHelper.startPage(pageNum, pageSize);
         List<${model}> list = this.${model_lower_camel}Mapper.selectByExample(example);
-        List<JSONObject> lists =  list.stream().map(${model_lower_camel} -> JSONObject.parseObject(JSONObject.toJSONString(${model_lower_camel}))).collect(Collectors.toList());
-        PageInfo result = new PageInfo(lists);
+        PageInfo result = new PageInfo(list);
+        List list1 = result.getList();
+        List<JSONObject> lists =  (List<JSONObject>) list1.stream().map(${model_lower_camel} -> JSONObject.parseObject(JSONObject.toJSONString(${model_lower_camel}))).collect(Collectors.toList());
+        result.setList(lists);
         return result;
         }
 

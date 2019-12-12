@@ -3,6 +3,7 @@ package com.sidianzhong.sdz.service;
 import com.sidianzhong.sdz.model.*;
 import com.sidianzhong.sdz.utils.PageInfo;
 import com.alibaba.fastjson.JSONObject;
+import java.util.List;
 
 /**
 * Created by hxgqh on 2016/1/7.
@@ -18,6 +19,9 @@ public interface ${model}Service {
     ${model} get(Integer id);
 
     PageInfo<${model}> getListWithPaging(Integer pageNum, Integer pageSize,
+                                              String sortItem, String sortOrder,${model} item);
+
+    List<${model}> getList(Integer pageNum, Integer pageSize,
                                               String sortItem, String sortOrder,${model} item);
 
     PageInfo<JSONObject> getListWithObject(Integer pageNum, Integer pageSize,
